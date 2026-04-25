@@ -1,6 +1,6 @@
-package states;
+包;
 
-import backend.WeekData;
+进口backend.WeekData;
 import backend.Highscore;
 import backend.Song;
 
@@ -74,7 +74,7 @@ class FreeplayState extends MusicBeatState
 			}
 
 			WeekData.setDirectoryFromWeek(leWeek);
-			for (song in leWeek.songs)
+for （leWeek.songs中的歌曲）
 			{
 				var colors:Array<Int> = song[2];
 				if(colors == null || colors.length < 3)
@@ -510,9 +510,9 @@ class FreeplayState extends MusicBeatState
 		
 		for (item in grpSongs.members)
 		{
-			if (item.visible)
+			if (item != null && item.visible && item.exists)
 			{
-				FlxTween.tween(item, {alpha: 0, scaleX: item.scaleX * 0.8, scaleY: item.scaleY * 0.8}, 0.4, {
+				FlxTween.tween(item, {alpha: 0}, 0.4, {
 					ease: FlxEase.quartOut,
 					startDelay: 0.1
 				});
@@ -521,57 +521,75 @@ class FreeplayState extends MusicBeatState
 		
 		for (icon in iconArray)
 		{
-			if (icon.visible)
+			if (icon != null && icon.visible && icon.exists)
 			{
 				FlxTween.tween(icon, {alpha: 0}, 0.4, {ease: FlxEase.quartOut});
 			}
 		}
 		
-		FlxTween.tween(scoreText, {alpha: 0}, 0.3);
-		FlxTween.tween(diffText, {alpha: 0}, 0.3);
-		FlxTween.tween(scoreBG, {alpha: 0}, 0.3);
-		FlxTween.tween(bottomText, {alpha: 0}, 0.3);
-		FlxTween.tween(bottomBG, {alpha: 0}, 0.3);
+		if (scoreText != null && scoreText.exists) FlxTween.tween(scoreText, {alpha: 0}, 0.3);
+		if (diffText != null && diffText.exists) FlxTween.tween(diffText, {alpha: 0}, 0.3);
+		if (scoreBG != null && scoreBG.exists) FlxTween.tween(scoreBG, {alpha: 0}, 0.3);
+		if (bottomText != null && bottomText.exists) FlxTween.tween(bottomText, {alpha: 0}, 0.3);
+		if (bottomBG != null && bottomBG.exists) FlxTween.tween(bottomBG, {alpha: 0}, 0.3);
 		
 		var selectedItem:Alphabet = grpSongs.members[curSelected];
-		FlxTween.tween(selectedItem, {scaleX: selectedItem.scaleX * 1.1, scaleY: selectedItem.scaleY * 1.1}, 0.3, {
-			ease: FlxEase.quartOut
-		});
-		FlxTween.tween(selectedItem, {alpha: 0}, 0.5, {
-			ease: FlxEase.quartIn,
-			startDelay: 0.2
-		});
+		if (selectedItem != null && selectedItem.exists)
+		{
+			FlxTween.tween(selectedItem, {alpha: 0}, 0.5, {
+				ease: FlxEase.quartIn,
+				startDelay: 0.2
+			});
+		}
 		
 		var selectedIcon:HealthIcon = iconArray[curSelected];
-		FlxTween.tween(selectedIcon, {scaleX: 1.2, scaleY: 1.2}, 0.3, {
-			ease: FlxEase.quartOut
-		});
-		FlxTween.tween(selectedIcon, {alpha: 0}, 0.5, {
-			ease: FlxEase.quartIn,
-			startDelay: 0.2
-		});
+		if (selectedIcon != null && selectedIcon.exists)
+		{
+			FlxTween.tween(selectedIcon, {alpha: 0}, 0.5, {
+				ease: FlxEase.quartIn,
+				startDelay: 0.2
+			});
+		}
 		
-		FlxTween.tween(bg, {scaleX: 1.2, scaleY: 1.2, alpha: 0}, 0.6, {
-			ease: FlxEase.quartIn,
-			onComplete: function(twn:FlxTween) {
-				LoadingState.loadAndSwitchState(new PlayState());
-				
-				FlxG.sound.music.volume = 0;
-				destroyFreeplayVocals();
-				#if (MODS_ALLOWED && DISCORD_ALLOWED)
-				DiscordClient.loadModRPC();
-				#end
-			}
-		});
+		if (bg != null && bg.exists)
+		{
+			FlxTween.tween(bg, {alpha: 0}, 0.6, {
+				ease: FlxEase.quartIn,
+				onComplete: function(twn:FlxTween) {
+					LoadingState.loadAndSwitchState(new PlayState());
+					
+					FlxG.sound.music.volume = 0;
+					destroyFreeplayVocals();
+					#if (MODS_ALLOWED && DISCORD_ALLOWED)
+					DiscordClient.loadModRPC();
+					#end
+				}
+			});
+		}
+		else
+		{
+			LoadingState.loadAndSwitchState(new PlayState());
+			FlxG.sound.music.volume = 0;
+			destroyFreeplayVocals();
+			#if (MODS_ALLOWED && DISCORD_ALLOWED)
+			DiscordClient.loadModRPC();
+			#end
+		}
 		
-		FlxTween.tween(whiteScreen, {alpha: 0.3}, 0.2, {
-			ease: FlxEase.quartOut,
-			onComplete: function(twn:FlxTween) {
-				FlxTween.tween(whiteScreen, {alpha: 0}, 0.3, {
-					ease: FlxEase.quartIn
-				});
-			}
-		});
+		if (whiteScreen != null)
+		{
+			FlxTween.tween(whiteScreen, {alpha: 0.3}, 0.2, {
+				ease: FlxEase.quartOut,
+				onComplete: function(twn:FlxTween) {
+					if (whiteScreen != null && whiteScreen.exists)
+					{
+						FlxTween.tween(whiteScreen, {alpha: 0}, 0.3, {
+							ease: FlxEase.quartIn
+						});
+					}
+				}
+			});
+		}
 	}
 
 	public static function destroyFreeplayVocals() {
@@ -592,7 +610,7 @@ class FreeplayState extends MusicBeatState
 		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
 		intendedRating = Highscore.getRating(songs[curSelected].songName, curDifficulty);
-		#end
+		#结束
 
 		lastDifficultyName = Difficulty.getString(curDifficulty);
 		diffText.text = "";
@@ -620,31 +638,31 @@ class FreeplayState extends MusicBeatState
 			
 		var newColor:Int = songs[curSelected].color;
 		if(newColor != intendedColor) {
-			if(colorTween != null) {
+包;
 				colorTween.cancel();
 			}
 			intendedColor = newColor;
 			colorTween = FlxTween.color(bg, 1, bg.color, intendedColor, {
-				onComplete: function(twn:FlxTween) {
-					colorTween = null;
+				onComplete: 函数(twn:FlxTween) {
+					colorTween = 零;
 				}
 			});
 		}
 
 		var bullShit:Int = 0;
 
-		for (i in 0...iconArray.length)
+		为 (i 在 0...iconArray.length)
 		{
 			iconArray[i].alpha = 0.6;
 		}
 
 		iconArray[curSelected].alpha = 1;
 
-		for (item in grpSongs.members)
+		为 (item 在 grpSongs.members)
 		{
 			bullShit++;
 			item.alpha = 0.6;
-			if (item.targetY == curSelected)
+			如果 (item.targetY == curSelected)
 				item.alpha = 1;
 		}
 		
@@ -654,11 +672,11 @@ class FreeplayState extends MusicBeatState
 		
 		var savedDiff:String = songs[curSelected].lastDifficulty;
 		var lastDiff:Int = Difficulty.list.indexOf(lastDifficultyName);
-		if(savedDiff != null && !lastList.contains(savedDiff) && Difficulty.list.contains(savedDiff))
+		如果(savedDiff != 零 && !lastList.contains(savedDiff) && Difficulty.list.contains(savedDiff))
 			curDifficulty = Math.round(Math.max(0, Difficulty.list.indexOf(savedDiff)));
-		else if(lastDiff > -1)
+		else 如果(lastDiff > -1)
 			curDifficulty = lastDiff;
-		else if(Difficulty.list.contains(Difficulty.getDefault()))
+		else 如果(Difficulty.list.contains(Difficulty.getDefault()))
 			curDifficulty = Math.round(Math.max(0, Difficulty.defaultList.indexOf(Difficulty.getDefault())));
 		else
 			curDifficulty = 0;
@@ -667,12 +685,12 @@ class FreeplayState extends MusicBeatState
 		_updateSongLastDifficulty();
 	}
 
-	inline private function _updateSongLastDifficulty()
+	inline 私人 函数 _updateSongLastDifficulty()
 	{
 		songs[curSelected].lastDifficulty = Difficulty.getString(curDifficulty);
 	}
 
-	private function positionHighscore() {
+	私人 函数 positionHighscore() {
 		scoreText.x = FlxG.width - scoreText.width - 6;
 		scoreBG.scale.x = FlxG.width - scoreText.x + 6;
 		scoreBG.x = FlxG.width - (scoreBG.scale.x / 2);
@@ -682,57 +700,57 @@ class FreeplayState extends MusicBeatState
 
 	var _drawDistance:Int = 4;
 	var _lastVisibles:Array<Int> = [];
-	public function updateTexts(elapsed:Float = 0.0)
+	public 函数 updateTexts(elapsed:Float = 0.0)
 	{
 		lerpSelected = FlxMath.lerp(curSelected, lerpSelected, Math.exp(-elapsed * 9.6));
-		for (i in _lastVisibles)
+		为 (i 在 _lastVisibles)
 		{
-			grpSongs.members[i].visible = grpSongs.members[i].active = false;
-			iconArray[i].visible = iconArray[i].active = false;
+			grpSongs.members[i].visible = grpSongs.members[i].active = 假;
+			iconArray[i].visible = iconArray[i].active = 假;
 		}
 		_lastVisibles = [];
 
-		var min:Int = Math.round(Math.max(0, Math.min(songs.length, lerpSelected - _drawDistance)));
-		var max:Int = Math.round(Math.max(0, Math.min(songs.length, lerpSelected + _drawDistance)));
-		for (i in min...max)
+		var min:Int = Math.round(Math.max(0, Math.min(songs.长度, lerpSelected - _drawDistance)));
+		var max:Int = Math.round(Math.max(0, Math.min(songs.长度, lerpSelected + _drawDistance)));
+		为 (i 在 min...max)
 		{
 			var item:Alphabet = grpSongs.members[i];
-			item.visible = item.active = true;
+			item.visible = item.active = 真正的;
 			item.x = ((item.targetY - lerpSelected) * item.distancePerItem.x) + item.startPosition.x;
 			item.y = ((item.targetY - lerpSelected) * 1.3 * item.distancePerItem.y) + item.startPosition.y;
 
-			var icon:HealthIcon = iconArray[i];
-			icon.visible = icon.active = true;
-			_lastVisibles.push(i);
+			长度 icon:HealthIcon = iconArray[i];
+			icon.visible = icon.active = 真正的;
+			_lastVisibles.推(i);
 		}
 	}
 
-	override function destroy():Void
+	override 函数 destroy():Void
 	{
 		super.destroy();
 
 		FlxG.autoPause = ClientPrefs.data.autoPause;
-		if (!FlxG.sound.music.playing)
+		如果 (!FlxG.sound.music.playing)
 			FlxG.sound.playMusic(Paths.music('freakyMenu'));
 	}	
 }
 
-class SongMetadata
+类 SongMetadata
 {
 	public var songName:String = "";
 	public var week:Int = 0;
 	public var songCharacter:String = "";
 	public var color:Int = -7179779;
 	public var folder:String = "";
-	public var lastDifficulty:String = null;
+	public var lastDifficulty:String = 零;
 
-	public function new(song:String, week:Int, songCharacter:String, color:Int)
+	我 函数 new(song:String, week:Int, songCharacter:String, color:Int)
 	{
 		this.songName = song;
 		this.week = week;
 		this.songCharacter = songCharacter;
 		this.color = color;
 		this.folder = Mods.currentModDirectory;
-		if(this.folder == null) this.folder = '';
+		如果(this.folder == 零) this.folder = '';
 	}
 }
