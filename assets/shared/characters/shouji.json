@@ -1,0 +1,80 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				42,
+				-4
+			],
+			"loop": false,
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "left",
+			"indices": []
+		},
+		{
+			"offsets": [
+				20,
+				-10
+			],
+			"loop": false,
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "down",
+			"indices": []
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"anim": "singUP",
+			"fps": 24,
+			"name": "up",
+			"indices": []
+		},
+		{
+			"offsets": [
+				2,
+				-2
+			],
+			"loop": false,
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "right",
+			"indices": []
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"anim": "idle",
+			"fps": 24,
+			"name": "idle",
+			"indices": []
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"image": "characters/sb_shouji",
+	"position": [
+		-180,
+		160
+	],
+	"healthicon": "sj",
+	"flip_x": true,
+	"healthbar_colors": [
+		215,
+		255,
+		255
+	],
+	"camera_position": [
+		-30,
+		-40
+	],
+	"sing_duration": 6,
+	"scale": 1.2,
+	"_editor_isPlayer": true
+}

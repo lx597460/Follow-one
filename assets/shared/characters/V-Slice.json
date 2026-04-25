@@ -1,96 +1,80 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"anim": "idle",
-			"fps": 15,
-			"name": "idle",
-			"indices": []
-		},
-		{
 			"loop": false,
-			"offsets": [
-				0,
-				0
-			],
 			"anim": "singLEFT",
 			"fps": 15,
 			"name": "left",
 			"indices": []
 		},
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
+			"loop": false,
 			"anim": "singDOWN",
 			"fps": 15,
 			"name": "down",
 			"indices": []
 		},
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
+			"loop": false,
 			"anim": "singUP",
 			"fps": 15,
 			"name": "up",
 			"indices": []
 		},
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
+			"loop": false,
 			"anim": "singRIGHT",
 			"fps": 15,
 			"name": "right",
 			"indices": []
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"anim": "idle",
+			"fps": 15,
+			"name": "idle",
+			"indices": []
 		}
 	],
 	"vocals_file": "",
-	"losing_colors": [
-		89,
-		176,
-		209
-	],
 	"no_antialiasing": false,
-	"image": "characters/foi_bf",
-	"shake_duration": 0,
+	"image": "Engine/V-Slice",
 	"position": [
-		-370,
-		90
+		-200,
+		230
 	],
-	"health_drain": false,
-	"shake_intensity": 0,
-	"healthicon": "bf",
-	"shake_screen": false,
-	"drain_floor": 0,
+	"healthicon": "v",
 	"flip_x": true,
 	"healthbar_colors": [
-		89,
-		176,
-		209
+		255,
+		255,
+		0
 	],
-	"drain_amount": 0,
 	"camera_position": [
-		-90,
-		100
+		60,
+		190
 	],
-	"sing_duration": 4,
-	"noteskin": null,
-	"winning_colors": [
-		89,
-		176,
-		209
-	],
-	"scale": 0.7
+	"sing_duration": 6.1,
+	"scale": 0.7,
+	"_editor_isPlayer": true
 }

@@ -7,7 +7,7 @@
 				0
 			],
 			"anim": "idle",
-			"fps": 15,
+			"fps": 24,
 			"name": "idle",
 			"indices": []
 		},
@@ -18,7 +18,7 @@
 				0
 			],
 			"anim": "singLEFT",
-			"fps": 15,
+			"fps": 24,
 			"name": "left",
 			"indices": []
 		},
@@ -29,7 +29,7 @@
 				0
 			],
 			"anim": "singDOWN",
-			"fps": 15,
+			"fps": 24,
 			"name": "down",
 			"indices": []
 		},
@@ -40,7 +40,7 @@
 				0
 			],
 			"anim": "singUP",
-			"fps": 15,
+			"fps": 24,
 			"name": "up",
 			"indices": []
 		},
@@ -51,46 +51,74 @@
 				0
 			],
 			"anim": "singRIGHT",
-			"fps": 15,
+			"fps": 24,
 			"name": "right",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "singLEFTmiss",
+			"fps": 24,
+			"name": "lm",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "singDOWNmiss",
+			"fps": 24,
+			"name": "dm",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "singUPmiss",
+			"fps": 24,
+			"name": "um",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "singRIGHTmiss",
+			"fps": 24,
+			"name": "rm",
 			"indices": []
 		}
 	],
 	"vocals_file": "",
-	"losing_colors": [
-		89,
-		176,
-		209
-	],
 	"no_antialiasing": false,
-	"image": "characters/foi_bf",
-	"shake_duration": 0,
+	"image": "characters/group_bf",
 	"position": [
-		-370,
-		90
+		-250,
+		270
 	],
-	"health_drain": false,
-	"shake_intensity": 0,
 	"healthicon": "bf",
-	"shake_screen": false,
-	"drain_floor": 0,
 	"flip_x": true,
 	"healthbar_colors": [
-		89,
+		49,
 		176,
 		209
 	],
-	"drain_amount": 0,
 	"camera_position": [
-		-90,
-		100
+		110,
+		-10
 	],
 	"sing_duration": 4,
-	"noteskin": null,
-	"winning_colors": [
-		89,
-		176,
-		209
-	],
-	"scale": 0.7
+	"scale": 1,
+	"_editor_isPlayer": true
 }

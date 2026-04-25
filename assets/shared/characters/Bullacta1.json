@@ -1,0 +1,23 @@
+{
+	"animations": [
+		{
+			"loop": true,
+			"offsets": [930, 777],
+			"fps": 10,
+			"anim": "idle",
+			"indices": [],
+			"name": "q"
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"image": "Bullacta/stage/Bullacta1",
+	"position": [-850, 190],
+	"healthicon": "gb",
+	"flip_x": false,
+	"healthbar_colors": [255, 255, 255],
+	"camera_position": [-400, 100],
+	"sing_duration": 6.1,
+	"scale": 0.5,
+	"_editor_isPlayer": false
+}
